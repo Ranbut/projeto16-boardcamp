@@ -1,11 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import gamesRoute from './routes/gamesRoute.js';
 import customersRoute from './routes/gamesRoute.js';
 import rentalsRoute from './routes/rentalsRoute.js';
-
-dotenv.config();
 
 export const app = express();
 app.use(express.json());
