@@ -1,11 +1,10 @@
-import { db } from "../../database/database.connection";
+import { db } from "../../database/database.connection.js";
 
 export async function GetIDCustomers (req, res) {
 
     const { id } = req.params;
 
     try{
-        console.log("Funcionando");
         const customers = await db.query(`SELECT * FROM customers WHERE id = ${id}`);
 
         const results = customers.rows[0];
