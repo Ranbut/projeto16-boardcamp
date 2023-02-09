@@ -12,10 +12,11 @@ export async function PostRentals (req, res) {
         const customer = await db.query(`SELECT id FROM customers WHERE id = ${customerId}`);
         const resultCustomer = customer.rows[0];
 
-        const game = await db.query(`SELECT * FROM games WHERE id=${gameId}`);
-        const resultGame = game.rows[0];
+        const games = await db.query(`SELECT * FROM games WHERE id=${gameId}`);
+        const resultGame = games.rows[0];
 
-        if(!resultCustomer || !resultGame || daysRented < 1 || resultGame.stockTotal < 1) return res.sendStatus(400);
+        if(!resultCustomer || !resultGame || daysRented < 1 || games.length >= resultGame.stockTotal) return res.sendStatus(400);
+
 
         const dateFormat = 'YYYY-MM-DD'    
         const today = new Date();
