@@ -8,7 +8,7 @@ export async function PostGames (req, res) {
 
         if(name && stockTotal > 0 && pricePerDay > 0){
 
-            const games = await db.query(`SELECT name FROM games WHERE name = ${name}`);
+            const games = await db.query(`SELECT name FROM games WHERE name='${name}'`);
 
             const results = games.rows[0];
     
