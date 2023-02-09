@@ -1,3 +1,5 @@
+import { db } from "../../database/database.connection.js";
+
 export async function DeleteRentalsID (req, res) {
 
     const { id } = req.params;
@@ -12,7 +14,7 @@ export async function DeleteRentalsID (req, res) {
 
         await db.query(`DELETE FROM rentals WHERE id=${id}`);
 
-        res.status(200).send(results);
+        res.sendStatus(200);
     }
     
     catch(err){
