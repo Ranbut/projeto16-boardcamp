@@ -9,7 +9,7 @@ import { rentalsSchema } from '../schemas/rentalsSchema.js';
 const router = Router();
 
 router.get('/rentals', GetRentals);
-router.post('/rentals', validateSchema(rentalsSchema), PostRentals);
+router.post('/rentals', PostRentals);
 router.post('/rentals/:id/return', PostRentalsIDReturn);
 router.delete('/rentals/:id/return', DeleteRentalsID);
 
