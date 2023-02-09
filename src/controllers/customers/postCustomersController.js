@@ -6,8 +6,9 @@ export async function PostCustomers (req, res) {
 
     try{
         const cpfRegex = "([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})";
+        const birthdayRegex = /^\d{4}-\d{2}-\d{2}$/;
 
-        if(name && cpf.match(cpfRegex) && cpf.length === 11 && phone.length >= 10 && phone.length <= 11 ){
+        if(name && cpf.match(cpfRegex) && cpf.length === 11 && phone.length >= 10 && phone.length <= 11 && birthday.match(birthdayRegex)){
 
         const customers = await db.query(`SELECT cpf FROM customers WHERE cpf = '${cpf}'`);
 

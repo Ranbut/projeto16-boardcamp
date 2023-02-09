@@ -9,6 +9,8 @@ export async function GetIDCustomers (req, res) {
 
         const results = customers.rows[0];
 
+        if(!results) return res.sendStatus(404);
+
         res.status(200).send(results);
     }
     

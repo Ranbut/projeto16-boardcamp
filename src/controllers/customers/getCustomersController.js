@@ -7,8 +7,6 @@ export async function GetCustomers (req, res) {
 
         const results = customers.rows;
 
-        if(!results) return res.sendStatus(400);
-
         res.status(200).send(results);
     }
     
