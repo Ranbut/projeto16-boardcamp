@@ -15,10 +15,10 @@ export async function PutCustomers (req, res) {
     
             await db.query(`UPDATE customers SET name='${name}', phone='${phone}', cpf='${cpf}', birthday='${birthday}' WHERE id = ${id};`);
 
-            res.status(202);
+            res.sendStatus(200);
             }
             else
-                return res.status(400).send("Dados do HTTP body estão inválidos.");
+                return res.sendStatus(400);
 
 
     }

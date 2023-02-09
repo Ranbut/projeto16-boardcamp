@@ -16,10 +16,10 @@ export async function PostGames (req, res) {
 
             await db.query(`INSERT INTO games (name , image, "stockTotal", "pricePerDay") VALUES ('${name}', '${image}', ${stockTotal}, ${pricePerDay});`);
 
-            res.status(201).send("Tábuleiro adicionado com sucesso!");
+            res.sendStatus(201);
         }
         else
-            return res.status(400).send("Dados do HTTP body estão inválidos.");
+            return res.sendStatus(400);
 
     }
     

@@ -15,10 +15,10 @@ export async function PostCustomers (req, res) {
 
         await db.query(`INSERT INTO customers (name , phone, cpf, birthday) VALUES ('${name}', '${phone}', '${cpf}', '${birthday}')`);
 
-        res.status(201).send("Cliente adicionado com sucesso!");
+        res.sendStatus(201);
         }
         else
-            return res.status(400).send("Dados do HTTP body estão inválidos.");
+            return res.sendStatus(400);
     }
     
     catch(err){
