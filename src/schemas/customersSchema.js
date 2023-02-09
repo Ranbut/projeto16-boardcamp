@@ -2,7 +2,7 @@ import joi from 'joi';
 
 export const customersSchema = joi.object({
     name: joi.string().allow(null, ''),
-    phone: joi.number().min(11).required(),
-    cpf: joi.string().min(11).required(),
-    birthday: joi.string().min(10).required()
+    phone: joi.string().allow(null, ''),
+    cpf: joi.string().allow(null, ''),
+    birthday: joi.string.allow(null, '')
   });
