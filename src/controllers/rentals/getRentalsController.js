@@ -1,9 +1,26 @@
 import { db } from "../../database/database.connection.js";
 
 export async function GetRentals (req, res) {
-
+        const { status, startDate } = req.query;
     try{
-        const rentals = await db.query("SELECT * FROM rentals");
+
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+        let rentals;
+
+        if(status === "open")
+            if(startDate && startDate.match(dateRegex))
+                rentals = await db.query(`SELECT * FROM rentals WHERE "returnDate" IS NULL AND "rentDate" >= '${startDate}';`);
+            else
+                rentals = await db.query(`SELECT * FROM rentals WHERE "returnDate" IS NULL;`);
+        else if(status === "closed")
+            if(startDate && startDate.match(dateRegex))
+                rentals = await db.query(`SELECT * FROM rentals WHERE "returnDate" IS NOT NULL AND "rentDate" >= '${startDate}';`);
+            else
+                rentals = await db.query(`SELECT * FROM rentals WHERE "returnDate" IS NOT NULL;`);
+        else
+            rentals = await db.query("SELECT * FROM rentals");
+            
         const customers = await db.query(`SELECT * FROM customers`);
         const games = await db.query(`SELECT * FROM games`);
 
