@@ -28,7 +28,7 @@ export async function PostRentalsIDReturn (req, res) {
         const daysLate = dayjs().diff(newRentDate, "days");
 
         if(dayjs(returnDate).isAfter(newRentDate)){
-            delayFee = results.originalPrice * parseInt(daysLate);
+            delayFee = results.originalPrice * parseInt(daysLate) - 1;
         }
         else
             delayFee = null
