@@ -11,7 +11,7 @@ export async function GetGames (req, res) {
         const setOffset = offset ? `OFFSET ${offset} ` : ""
         const setOrder = order ? `ORDER BY ${order}` : ""
 
-        let setDesc
+        let setDesc;
         if(order)
             setDesc = desc === 'true' ? `DESC` : ""
         else
