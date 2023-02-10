@@ -19,9 +19,9 @@ export async function GetGames (req, res) {
 
 
         if (name)
-            games = await db.query(`SELECT * FROM games WHERE LOWER (name) LIKE LOWER ('%${name}%') ${setLimit} ${setOffset} ${setOrder}`);
+            games = await db.query(`SELECT * FROM games WHERE LOWER (name) LIKE LOWER ('%${name}%') ${setOrder} ${setDesc} ${setLimit} ${setOffset} ${setOrder}`);
         else
-            games = await db.query(`SELECT * FROM games ${setLimit} ${setOffset} ${setOrder}`);
+            games = await db.query(`SELECT * FROM games ${setOrder} ${setDesc} ${setLimit} ${setOffset}`);
 
         const results = games.rows;
 
