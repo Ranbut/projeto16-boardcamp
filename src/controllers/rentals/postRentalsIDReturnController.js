@@ -25,12 +25,13 @@ export async function PostRentalsIDReturn (req, res) {
 
         let delayFee;
 
+        const game = await db.query(`SELECT * FROM games WHERE id=${results.gameId}`);
+        const resultGame = game.rows[0];
+
         const daysLate = dayjs(returnDate).diff(newRentDate, "days");
 
-        console.log(daysLate);
-
         if(dayjs(returnDate).isAfter(newRentDate)){
-            delayFee = results.originalPrice * daysLate;
+            delayFee = resultGame.pricePerDay * daysLate;
         }
         else
             delayFee = null
