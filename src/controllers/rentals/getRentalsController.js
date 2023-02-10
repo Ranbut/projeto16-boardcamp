@@ -13,16 +13,16 @@ export async function GetRentals (req, res) {
 
         if(status === "open")
             if(startDate && startDate.match(dateRegex))
-                rentals = await db.query(`SELECT * FROM rentals WHERE "returnDate" IS NULL AND "rentDate" >= '${startDate}';`);
+                rentals = await db.query(`SELECT * FROM rentals WHERE "returnDate" IS NULL AND "rentDate" >= '${startDate}' ${searchCustomer} ${searchGame};`);
             else
-                rentals = await db.query(`SELECT * FROM rentals WHERE "returnDate" IS NULL;`);
+                rentals = await db.query(`SELECT * FROM rentals WHERE "returnDate" IS NULL ${searchCustomer} ${searchGame};`);
         else if(status === "closed")
             if(startDate && startDate.match(dateRegex))
-                rentals = await db.query(`SELECT * FROM rentals WHERE "returnDate" IS NOT NULL AND "rentDate" >= '${startDate}';`);
+                rentals = await db.query(`SELECT * FROM rentals WHERE "returnDate" IS NOT NULL AND "rentDate" >= '${startDate}' ${searchCustomer} ${searchGame};`);
             else
-                rentals = await db.query(`SELECT * FROM rentals WHERE "returnDate" IS NOT NULL;`);
+                rentals = await db.query(`SELECT * FROM rentals WHERE "returnDate" IS NOT NULL ${searchCustomer} ${searchGame};`);
         else if(status !== "open" && status !== "closed" && startDate && startDate.match(dateRegex))
-            rentals = await db.query(`SELECT * FROM rentals WHERE "rentDate" >= '${startDate}';`);
+            rentals = await db.query(`SELECT * FROM rentals WHERE "rentDate" >= '${startDate}' ${searchCustomer} ${searchGame};`);
         else if(customerId)
             rentals = await db.query(`SELECT * FROM rentals WHERE "customerId"=${customerId}`);
         else if(gameId)
