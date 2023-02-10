@@ -10,7 +10,7 @@ export async function PutCustomers (req, res) {
 
         if(name && cpf.match(cpfRegex) && cpf.length === 11 && phone.length >= 10 && phone.length <= 11 && birthday.match(birthdayRegex)){
 
-            const customers = await db.query(`SELECT cpf FROM customers WHERE cpf = '${cpf}'`);
+            const customers = await db.query(`SELECT cpf FROM customers WHERE cpf='${cpf}' AND id <> ${id}`);
     
             const results = customers.rows[0];
     
