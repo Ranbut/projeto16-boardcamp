@@ -2,15 +2,18 @@ import { db } from "../../database/database.connection.js";
 
 export async function GetCustomers (req, res) {
 
-    const { cpf } = req.query;
+    const { cpf, limit, offset } = req.query;
 
     try{
         let customers;
 
+        const setLimit = customerId ? `AND "customerId"=${customerId} `  : ""
+        const setOffset = gameId ? `AND "gameId"=${gameId} ` : ""
+
         if (cpf)
-            customers = await db.query(`SELECT * FROM customers WHERE cpf LIKE '${cpf}%'`);
+            customers = await db.query(`SELECT * FROM customers WHERE cpf LIKE '${cpf}%' ${setLimit} ${setOffset}`);
         else
-            customers = await db.query("SELECT * FROM customers");
+            customers = await db.query(`SELECT * FROM customers ${setLimit} ${setOffset}`);
 
         const results = customers.rows;
 
