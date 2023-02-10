@@ -11,7 +11,7 @@ export async function GetCustomers (req, res) {
         const setOffset = offset ? `OFFSET ${offset} ` : ""
         const setOrder = order ? `ORDER BY ${order}` : ""
 
-        let setDesc;
+        let setDesc
         if(order)
             setDesc = desc === 'true' ? `DESC` : ""
         else
@@ -20,7 +20,7 @@ export async function GetCustomers (req, res) {
         if (cpf)
             customers = await db.query(`SELECT * FROM customers WHERE cpf LIKE '${cpf}%' ${setLimit} ${setOffset} ${setOrder} ${setDesc}`);
         else
-            customers = await db.query(`SELECT * FROM customers ${setLimit} ${setOffset} ${setOrder} ${setDesc}`);
+            customers = await db.query(`SELECT * FROM customers ${setLimit} ${setOffset} ${setOrder} ${setOrder} ${setDesc}`);
 
         const results = customers.rows;
 

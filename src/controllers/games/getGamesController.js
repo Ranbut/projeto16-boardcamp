@@ -2,7 +2,7 @@ import { db } from "../../database/database.connection.js";
 
 export async function GetGames (req, res) {
 
-    const { name, limit, offset } = req.query;
+    const { name, limit, offset, order, desc } = req.query;
 
     try{
         let games;
