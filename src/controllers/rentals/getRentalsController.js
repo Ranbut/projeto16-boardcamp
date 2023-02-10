@@ -18,6 +18,8 @@ export async function GetRentals (req, res) {
                 rentals = await db.query(`SELECT * FROM rentals WHERE "returnDate" IS NOT NULL AND "rentDate" >= '${startDate}';`);
             else
                 rentals = await db.query(`SELECT * FROM rentals WHERE "returnDate" IS NOT NULL;`);
+        else if(status !== "open" && status !== "closed" && startDate && startDate.match(dateRegex))
+            rentals = await db.query(`SELECT * FROM rentals WHERE "rentDate" >= '${startDate}';`);
         else
             rentals = await db.query("SELECT * FROM rentals");
             
