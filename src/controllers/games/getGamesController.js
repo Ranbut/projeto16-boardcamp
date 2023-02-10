@@ -9,7 +9,7 @@ export async function GetGames (req, res) {
 
         const setLimit = limit ? `LIMIT ${limit} `  : ""
         const setOffset = offset ? `OFFSET ${offset} ` : ""
-        const setOrder = order ? `ORDER BY ${order} ` : ""
+        const setOrder = order ? `ORDER BY "${order}" ` : ""
 
         let setDesc;
         if(order)
