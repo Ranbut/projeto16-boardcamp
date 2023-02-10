@@ -9,6 +9,14 @@ export async function GetRentals (req, res) {
         const searchCustomer = customerId ? `AND "customerId"=${customerId} `  : ""
         const searchGame = gameId ? `AND "gameId"=${gameId} ` : ""
 
+        const setOrder = order ? `ORDER BY "${order}" ` : ""
+
+        let setDesc;
+        if(order)
+            setDesc = desc === 'true' ? `DESC ` : ""
+        else
+            setDesc = desc === 'true' ? `ORDER BY DESC ` : ""
+
         let rentals;
 
         if(status === "open")
@@ -28,7 +36,7 @@ export async function GetRentals (req, res) {
         else if(gameId)
             rentals = await db.query(`SELECT * FROM rentals WHERE "gameId"=${gameId}`);
         else
-            rentals = await db.query("SELECT * FROM rentals");
+            rentals = await db.query(`SELECT * FROM rentals ${setOrder} ${setDesc}`);
             
         const customers = await db.query(`SELECT * FROM customers`);
         const games = await db.query(`SELECT * FROM games`);
