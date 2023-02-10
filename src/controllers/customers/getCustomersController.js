@@ -7,8 +7,8 @@ export async function GetCustomers (req, res) {
     try{
         let customers;
 
-        const setLimit = customerId ? `AND "customerId"=${customerId} `  : ""
-        const setOffset = gameId ? `AND "gameId"=${gameId} ` : ""
+        const setLimit = limit ? `LIMIT ${limit} `  : ""
+        const setOffset = offset ? `OFFSET ${offset} ` : ""
 
         if (cpf)
             customers = await db.query(`SELECT * FROM customers WHERE cpf LIKE '${cpf}%' ${setLimit} ${setOffset}`);
