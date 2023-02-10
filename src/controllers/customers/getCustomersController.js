@@ -9,18 +9,18 @@ export async function GetCustomers (req, res) {
 
         const setLimit = limit ? `LIMIT ${limit} `  : ""
         const setOffset = offset ? `OFFSET ${offset} ` : ""
-        const setOrder = order ? `ORDER BY ${order}` : ""
+        const setOrder = order ? `ORDER BY id ` : ""
 
-        let setDesc
+        let setDesc;
         if(order)
-            setDesc = desc === 'true' ? `DESC` : ""
+            setDesc = desc === 'true' ? `DESC ` : ""
         else
-            setDesc = desc === 'true' ? `ORDER BY DESC` : ""
+            setDesc = desc === 'true' ? `ORDER BY DESC ` : ""
 
         if (cpf)
-            customers = await db.query(`SELECT * FROM customers WHERE cpf LIKE '${cpf}%' ${setLimit} ${setOffset} ${setOrder} ${setDesc}`);
+            customers = await db.query(`SELECT * FROM customers WHERE cpf LIKE '${cpf}%' ${setOrder} ${setDesc} ${setLimit} ${setOffset};`);
         else
-            customers = await db.query(`SELECT * FROM customers ${setLimit} ${setOffset} ${setOrder} ${setOrder} ${setDesc}`);
+            customers = await db.query(`SELECT * FROM customers ${setOrder} ${setDesc} ${setLimit} ${setOffset}`);
 
         const results = customers.rows;
 
