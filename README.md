@@ -12,37 +12,6 @@ Back-end do projeto n° 16 do curso de desenvolvimento fullstack da Driven
 
 - Nomeie a pasta do seu projeto com: `projeto16-boardcamp`
 
-## 🎲 Banco de Dados (configuração)
-
-- Como ainda não estudamos modelagem de dados e nem criação de tabelas, por ora, forneceremos tudo isso pronto. *(mas calma, prometo que chegaremos lá!)*
-- Para conseguir fazer a construção do banco, siga os comandos abaixo…
-    1. Baixe e extraia o zip abaixo:
-        
-        [database-boardcamp.zip](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/46901058-138c-4c4a-8973-7ae4e2c64385/database-boardcamp.zip)
-        
-    2. Abra um terminal na pasta extraída e execute o seguinte comando:
-        
-        ```bash
-        sudo bash ./create-database
-        ```
-        
-    3. O banco de dados está criado! Para conectar sua aplicação ao banco, utilize as seguintes credenciais:
-        
-        `.env`
-        
-        ```jsx
-        DATABASE_URL=postgres://bootcamp_role:senha_super_hiper_ultra_secreta_do_role_do_bootcamp@localhost:5432/boardcamp
-        ```
-        
-        `database.js`
-        
-        ```jsx
-        const connection = new Pool({
-          connectionString: process.env.DATABASE_URL,
-        });
-        ```
-        
-
 ## 🖥️ Front-end
 
 - Para esse projeto você receberá um *front-end* prontinho, aguardando apenas a integração com a sua API:
@@ -54,11 +23,11 @@ Back-end do projeto n° 16 do curso de desenvolvimento fullstack da Driven
 ## ✅ Requisitos
 
 - Geral
-    - [ ]  A porta utilizada pelo seu servidor deve ser a 5000 (isso é necessário para a avaliação)
-    - [ ]  O servidor deve ser iniciado a partir de um arquivo em `src/app.js`
-    - [ ]  A estrutura de arquivos e pastas do projeto deve seguir o padrão aprendido nas últimas semanas, com as camadas `controllers`, `routers`, `middlewares` e `schemas` (onde for necessário).
-    - [ ]  Versionamento usando Git é obrigatório, crie um **repositório público** no seu perfil do GitHub
-    - [ ]  Faça commits a cada funcionalidade implementada
+    - [X]  A porta utilizada pelo seu servidor deve ser a 5000 (isso é necessário para a avaliação)
+    - [X]  O servidor deve ser iniciado a partir de um arquivo em `src/app.js`
+    - [X]  A estrutura de arquivos e pastas do projeto deve seguir o padrão aprendido nas últimas semanas, com as camadas `controllers`, `routers`, `middlewares` e `schemas` (onde for necessário).
+    - [X]  Versionamento usando Git é obrigatório, crie um **repositório público** no seu perfil do GitHub
+    - [X]  Faça commits a cada funcionalidade implementada
 - CRUD de Jogos [Create | Read]
     - Formato de um jogo (tabela `games`)
         
